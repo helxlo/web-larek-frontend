@@ -1,13 +1,41 @@
-export interface CardData {
+export interface IModalData {
+    content: HTMLElement;
+}
+
+export interface IFormState {
+    valid: boolean;
+    errors: string[];
+}
+
+export interface IPage {
+    counter: number;
+    catalog: HTMLElement[];
+    locked: boolean;
+}
+
+export interface ICard<T> {
     id: string;
     description?: string;
     image: string;
     title: string;
     category: string;
-    price: number | null; 
+    price: number | null;
 }
 
-export interface UserData {
+export interface IBasketView {
+    items: HTMLElement[];
+    total: number;
+    selected: string[];
+}
+
+export interface IAppState {
+    catalog: ICard<[]>;
+    basket: string[];
+    preview: string | null;
+    order: IOrder | null;
+}
+
+export interface IOrderForm {
     payment: boolean;
     email: string;
     phone: string;
@@ -15,14 +43,7 @@ export interface UserData {
     total: number;
 }
 
-export interface IAppState {
-    catalog: CardData[];
-    basket: string[];
-    preview: string | null;
-    order: IOrder | null;
-}
-
-export interface IOrder extends UserData {
+export interface IOrder extends IOrderForm {
     items: string[]
 }
 
