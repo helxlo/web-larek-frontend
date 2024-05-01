@@ -1,11 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="ru">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#000000" />
-	<link rel="icon" href="/favicon.ico" />
-	<link rel="manifest" href="/manifest.json" />
+	<!-- <link rel="manifest" href="/manifest.json" /> -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -13,8 +13,10 @@
 	<meta name="msapplication-TileColor" content="#000000">
 
 	<title>WebLarek</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<meta name="description" content="">
 </head>
+
 <body class="page">
 	<div class="page__wrapper">
 		<header class="header">
@@ -28,7 +30,8 @@
 			</div>
 		</header>
 
-		<main class="gallery"></main>
+		<main class="gallery">
+		</main>
 	</div>
 
 	<div class="modal" id="modal-container">
@@ -114,7 +117,7 @@
 						</label>
 					</div>
 					<div class="modal__actions">
-						<button disabled class="button">Далее</button>
+						<button class="button">Далее</button>
 					</div>
 				</form>
 			</div>
@@ -194,7 +197,7 @@
 			<span class="basket__item-index">1</span>
 			<span class="card__title">Фреймворк куки судьбы</span>
 			<span class="card__price">2500 синапсов</span>
-			<button class="basket__item-delete card__button" aria-label="удалить"></button>
+			<button class="basket__item-delete card__button card__delete-button" aria-label="удалить"></button>
 		</li>
 	</template>
 
@@ -250,4 +253,5 @@
 		</form>
 	</template>
 </body>
+
 </html>
