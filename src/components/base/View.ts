@@ -17,7 +17,7 @@ export abstract class View<T> {
         Object.assign(this as object, data ?? {});
         return this.container;
     }
-
+ 
     protected setText(element: HTMLElement, value: unknown) {
         if (element) {
             element.textContent = String(value)
@@ -30,10 +30,6 @@ export abstract class View<T> {
 
     protected setVisible(element: HTMLElement) {
         element.style.removeProperty('display');
-    }
-
-    protected setPrice(element: HTMLElement, value: unknown) {
-        element.textContent = String(value) + ' синапсов'
     }
 
     protected setImage(element: HTMLImageElement, src: string, alt?: string) {

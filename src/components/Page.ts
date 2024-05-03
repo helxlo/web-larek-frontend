@@ -1,5 +1,5 @@
 import { View } from "../components/base/View";
-import { IEvents } from "./base/events";
+import { IEvents } from "./base/Events";
 import { ensureElement } from "../utils/utils";
 
 interface IPage {
@@ -29,18 +29,14 @@ export class Page extends View<IPage> {
     }
 
     set counter(value: number) {
-        this.setText(this._counter, String(value));
+        this.setText(this._counter, value);
     }
 
     set catalog(items: HTMLElement[]) {
         this._catalog.replaceChildren(...items);
     }
 
-    set locked(value: boolean) {
-        if (value) {
-            this._wrapper.classList.add('page__wrapper_locked');
-        } else {
-            this._wrapper.classList.remove('page__wrapper_locked');
-        }
+   set locked(value: boolean) {
+    this.toggleClass(this._wrapper, 'page__wrapper_locked', value)
     }
 }

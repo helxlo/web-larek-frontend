@@ -1,7 +1,7 @@
 import { View } from "../components/base/View";
 import { ICard } from "../types/types";
 import { ensureElement } from "../utils/utils";
-import { AppState } from "./AppState";
+import { AppState, CardItem } from "./AppState";
 
 interface ICardActions {
     onClick?: (event: MouseEvent) => void;
@@ -51,8 +51,15 @@ export class Card extends View<ICard> {
         }
     }
 
+    setButtonOff(value: boolean) {
+        if (value) {
+            this.setDisabled(this._button, true)
+            this.setText(this._button, 'Уже в корзине')
+        }
+    }
+
     set index(value: string) {
-        this._index.textContent = value
+        this.setText(this._index, value)
     }
 
     set category(value: string) {
@@ -60,7 +67,8 @@ export class Card extends View<ICard> {
     }
 
     set price(value: number) {
-        this.setPrice(this._price, value)
+        const string = value + ` синапсов`
+        this.setText(this._price, string)
     }
 
     set id(value: string) {

@@ -25,6 +25,7 @@ export class Success extends View<ISuccess> {
     }
 
     set total(price: number) {
-        this._text.textContent = `Списано ${price} синапсов`
+        const string = `Списано ${price} синапсов`
+        this.setText(this._text, string)
     }
 }

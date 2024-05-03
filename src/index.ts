@@ -2,7 +2,7 @@ import './scss/styles.scss';
 
 import { CatalogAPI } from "./components/CatalogAPI";
 import { API_URL, CDN_URL } from "./utils/constants";
-import { EventEmitter } from "./components/base/events";
+import { EventEmitter } from "./components/base/Events";
 import { AppState, CardItem, CatalogChangeEvent } from "./components/AppState";
 import { Page } from "./components/Page";
 import { Card } from './components/Card';
@@ -12,6 +12,7 @@ import { Basket } from "./components/Basket";
 import { IOrderForm } from "./types/types";
 import { Order } from "./components/Order";
 import { Success } from "./components/Success";
+import { clone, cloneDeepWith } from 'lodash';
 
 const events = new EventEmitter();
 const api = new CatalogAPI(CDN_URL, API_URL);
@@ -60,7 +61,7 @@ events.on<CatalogChangeEvent>('items:changed', () => {
 
 //открывает карточку с товаром
 events.on('card:select', (item: CardItem) => {
-    appData.setPreview(item);
+    appData.setPreview(item)
 });
 //попап с превью товаром и кнопкой 'в корзину'
 events.on('preview:changed', (item: CardItem) => {
@@ -70,12 +71,11 @@ events.on('preview:changed', (item: CardItem) => {
                 appData.setBasket(item)
                 page.counter = appData.basket.length
                 modal.close()
-                //нужен метод, который добавит 
-                //кликнутую карточку в новый массив 
-                // кликнутых карточек ??
-                //console.log(arr)
             }
-        });
+        }
+        );
+
+        card.setButtonOff(appData.isInBasket(item))
 
         modal.render({
             content: card.render({
@@ -113,6 +113,7 @@ events.on('basket:changed', () => {
             //кнопка удаления товара - корзина
             onDelete: () => {
                 appData.removeCard(item)
+                //events.emit('basket:changed')
             }
         });
         return card.render({

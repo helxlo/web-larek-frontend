@@ -1,7 +1,9 @@
 import _ from "lodash";
 
 import { Model } from "./base/Model";
+import { } from "./Card"
 import { FormErrors, IAppState, IOrder, IOrderForm, ICard } from "../types/types";
+import { View } from "./base/View";
 
 export type CatalogChangeEvent = {
     catalog: CardItem[]
@@ -41,9 +43,13 @@ export class AppState extends Model<IAppState> {
     }
 
     removeCard(item: CardItem) {
-        //боже надо было просто уровнять прикинь, а я думала над этим неделю
         this.basket = this.basket.filter(val => val.id != item.id)
         this.emitChanges('basket:changed')
+
+        this.basket.forEach(card => {
+            this.order.items.push(card.id)
+            this.order.items = [card.id]
+        })
     }
 
     getTotal() {
@@ -54,11 +60,15 @@ export class AppState extends Model<IAppState> {
         return this.order.total = value
     }
 
-    //??надо при клике на кнопку ОФОРМИТЬ эмитеть ещё раз массив??
     setBasket(item: CardItem) {
         this.basket.push(item)
         this.order.items.push(item.id)
         this.emitChanges('basket:changed')
+
+    }
+
+    isInBasket(item: CardItem) {
+        return this.basket.includes(item)
     }
 
     setPreview(item: CardItem) {

@@ -1,7 +1,7 @@
 import { View } from "../components/base/View";
 import { IBasketView } from "../types/types";
 import { createElement, ensureElement, formatNumber } from "../utils/utils";
-import { EventEmitter } from "../components/base/events";
+import { EventEmitter } from "../components/base/Events";
 
 export class Basket extends View<IBasketView> {
     protected _list: HTMLElement;
@@ -48,7 +48,8 @@ export class Basket extends View<IBasketView> {
     }
 
     set total(total: number) {
-        this.setPrice(this._total, formatNumber(total));
+        const string = formatNumber(total) + ` cинапсов`
+        this.setText(this._total, string);
     }
 
 }
