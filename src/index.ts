@@ -12,7 +12,6 @@ import { Basket } from "./components/Basket";
 import { IOrderForm } from "./types/types";
 import { Order } from "./components/Order";
 import { Success } from "./components/Success";
-import { clone, cloneDeepWith } from 'lodash';
 
 const events = new EventEmitter();
 const api = new CatalogAPI(CDN_URL, API_URL);
@@ -74,6 +73,10 @@ events.on('preview:changed', (item: CardItem) => {
             }
         }
         );
+
+        if (item.id === 'b06cde61-912f-4663-9751-09956c0eed67') {
+            card.setButtonOff(true)
+        }
 
         card.setButtonOff(appData.isInBasket(item))
 

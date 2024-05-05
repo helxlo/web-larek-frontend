@@ -1,6 +1,6 @@
-import {View} from "../base/View";
-import {ensureElement} from "../../utils/utils";
-import {IEvents} from "../base/Events";
+import { View } from "../base/View";
+import { ensureElement } from "../../utils/utils";
+import { IEvents } from "../base/Events";
 
 interface IModalData {
     content: HTMLElement;
@@ -26,12 +26,12 @@ export class Modal extends View<IModalData> {
     }
 
     open() {
-        this.container.classList.add('modal_active');
+        this.container.classList.toggle('modal_active', true);
         this.events.emit('modal:open');
     }
 
     close() {
-        this.container.classList.remove('modal_active');
+        this.container.classList.toggle('modal_active', false);
         this.content = null;
         this.events.emit('modal:close');
     }

@@ -1,5 +1,5 @@
 export abstract class View<T> {
-   protected constructor(protected readonly container: HTMLElement) {
+    protected constructor(protected readonly container: HTMLElement) {
     }
 
     toggleClass(element: HTMLElement, className: string, force?: boolean) {
@@ -12,12 +12,12 @@ export abstract class View<T> {
             else element.removeAttribute('disabled');
         }
     }
-    
+
     render(data?: Partial<T>): HTMLElement {
         Object.assign(this as object, data ?? {});
         return this.container;
     }
- 
+
     protected setText(element: HTMLElement, value: unknown) {
         if (element) {
             element.textContent = String(value)
