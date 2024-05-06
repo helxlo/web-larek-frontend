@@ -51,6 +51,14 @@ export class Card extends View<ICard> {
         }
     }
 
+
+    setNullItemOff(value: boolean) {
+        if (value) {
+            this.setDisabled(this._button, true)
+            this.setText(this._button, 'Нельзя купить')
+        }
+    }
+
     setButtonOff(value: boolean) {
         if (value) {
             this.setDisabled(this._button, true)
